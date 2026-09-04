@@ -20,6 +20,24 @@ jobs:
 
     - run: pip install -r requirements.txt
 
-    - run: playwright install
+    - name: Install Chromium
+      run: playwright install --with-deps chromium
 
-    - run: pytest
+    - name: Start test application
+      run: |
+        python app/app.py > flask.log 2>&1 &
+        echo $! > flask.pid
+
+    - name: Wait for application
+      run: |
+        for i in {1..30}; do
+          curl --fail http://127.0.0.1:5000/login && exit 0
+          sleep 1
+        done
+        cat flask.log
+        exit 1    
+
+    - name: Run tests
+      env:
+        BASE_URL: http://127.0.0.1:5000
+      run: pytest

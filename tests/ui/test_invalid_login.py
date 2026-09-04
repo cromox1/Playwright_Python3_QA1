@@ -12,7 +12,7 @@ def notlogin_page_then_validate(page, list_users):
         assert "/users" not in page.url
         assert "/login" in page.url
         users_page = UsersPage(page)
-        users_page.verify_page_not_login()
+        users_page.verify_user_fail_login()
 
 
 def test_invalid_login_cred_notexist(page):

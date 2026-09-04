@@ -1,5 +1,6 @@
-from datetime import datetime
+# from datetime import datetime
 from utils.config import BASE_URL
+from uuid import uuid4
 # from utils.test_data import TEST_FIRSTNAME
 
 
@@ -24,8 +25,8 @@ class UsersAPI:
         return self.request.post(f"{BASE_URL}/api/login", data={"username": username, "password": password})
 
     def create_testuser(self, firstname):
-        timestamp = datetime.now().strftime("%H%M%S")
-        testuser = firstname + '_' + timestamp
+        # timestamp = datetime.now().strftime("%H%M%S")
+        testuser = f"{firstname}_{uuid4().hex[:8]}"
 
         return self.request.post(
             f"{BASE_URL}/api/users",
