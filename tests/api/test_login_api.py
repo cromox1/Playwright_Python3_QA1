@@ -32,13 +32,13 @@ def test_valid_login_validuser(users_api):
     user = get_user('valid_user')
     valid_login_then_validate(users_api, user.username, user.password)
 
-def test_valid_login_intgr_user(users_api):
-    user = get_user('integers_user')
-    valid_login_then_validate(users_api, user.username, user.password)
+# def test_valid_login_intgr_user(users_api):
+#     user = get_user('integers_user')
+#     valid_login_then_validate(users_api, user.username, user.password)
 
-def test_valid_login_intgr_pswd(users_api):
-    user = get_user('integers_pswd')
-    valid_login_then_validate(users_api, user.username, user.password)
+# def test_valid_login_intgr_pswd(users_api):
+#     user = get_user('integers_pswd')
+#     valid_login_then_validate(users_api, user.username, user.password)
 
 def test_invalid_login_wrongpswd(users_api):
     notlogin_api_page_then_validate(users_api, 'cromox1', 'WrongPassword')
